@@ -1,268 +1,202 @@
-# Netsurf
+# NetSurf
 
-> A production-grade, Chrome-like browser with integrated AI agent capabilities. Built with Electron + React + TypeScript.
+> An AI-powered desktop browser built with Electron, React, and TypeScript. NetSurf combines modern web browsing with intelligent AI-powered automation, voice interaction, and productivity features.
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://reactjs.org/)
-[![Electron](https://img.shields.io/badge/Electron-29-blue?logo=electron)](https://www.electronjs.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![Electron](https://img.shields.io/badge/Electron-29-blue?logo=electron)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ---
 
-## ✨ Features
+# ✨ Features
 
 | Feature | Description |
 |---------|-------------|
-| 🌐 **Modern Browser** | Full Chrome-like tabbed browsing experience |
-| 🤖 **AI Agent** | Integrated AI that can browse, search, and complete tasks autonomously |
-| 🎨 **Beautiful UI** | Dark/light themes with smooth Framer Motion animations |
-| ⚡ **Fast** | Vite-powered development, optimized production builds |
-| 🔒 **Secure** | Sandboxed webviews, encrypted API key storage |
-| ⌨️ **Keyboard First** | Full keyboard navigation with customizable shortcuts |
+| 🌐 Modern Browser | Chrome-like multi-tab browsing experience |
+| 🤖 AI Agent | AI assistant capable of browsing, searching, and completing tasks |
+| 🎤 Voice Interaction | Voice-enabled browsing and AI communication |
+| 🎨 Modern UI | Clean interface with Dark/Light themes and Framer Motion animations |
+| ⚡ High Performance | Built with Vite for fast development and optimized builds |
+| 🔒 Secure | Sandboxed webviews and encrypted API key storage |
+| ⌨️ Keyboard Shortcuts | Fully keyboard-accessible browsing experience |
 
 ---
 
-## 🏗️ Architecture
+# 🏗️ Architecture
 
-### High-Level System Architecture
+## Main Components
 
-```mermaid
-graph TB
-    subgraph Electron["Electron Main Process"]
-        Main["main.ts"]
-        IPC["IPC Handlers"]
-        KeyStore["Secure Key Storage"]
-    end
-    
-    subgraph Frontend["React Frontend"]
-        App["App.tsx"]
-        Stores["Zustand Stores"]
-        Components["UI Components"]
-        Hooks["Custom Hooks"]
-    end
-    
-    subgraph WebViews["Browser Webviews"]
-        Tab1["Tab 1"]
-        Tab2["Tab 2"]
-        TabN["Tab N..."]
-    end
-    
-    subgraph Backend["Backend Services"]
-        LLMProviders["LLM Providers"]
-        AgentCore["Agent Core"]
-        Tools["Browser Tools"]
-    end
-    
-    Main --> IPC
-    IPC <--> App
-    App --> Stores
-    Stores --> Components
-    Components --> WebViews
-    Hooks --> AgentCore
-    AgentCore --> LLMProviders
-    AgentCore --> Tools
-    Tools --> WebViews
-```
-
-### Agent Execution Flow
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant AgentPanel
-    participant AgentStore
-    participant LLMProvider
-    participant WebView
-    
-    User->>AgentPanel: Enter prompt
-    AgentPanel->>AgentStore: startAgent(prompt)
-    AgentStore->>LLMProvider: sendMessage(prompt)
-    
-    loop Agent Loop
-        LLMProvider-->>AgentStore: action/thought
-        AgentStore->>AgentPanel: update logs
-        
-        alt Navigation Action
-            AgentStore->>WebView: navigate(url)
-            WebView-->>AgentStore: navigation complete
-        else Click Action
-            AgentStore->>WebView: click(selector)
-            WebView-->>AgentStore: click complete
-        else Input Action
-            AgentStore->>WebView: input(selector, text)
-            WebView-->>AgentStore: input complete
-        end
-        
-        AgentStore->>LLMProvider: observation
-    end
-    
-    LLMProvider-->>AgentStore: final_answer
-    AgentStore->>AgentPanel: completeAgent()
-    AgentPanel->>User: Display result
-```
-
-### Frontend State Management
-
-```mermaid
-graph LR
-    subgraph Stores["Zustand Stores"]
-        TabStore["Tab Store"]
-        AgentStore["Agent Store"]
-        UIStore["UI Store"]
-        SettingsStore["Settings Store"]
-    end
-    
-    subgraph TabStore
-        tabs["tabs[]"]
-        activeTabId["activeTabId"]
-        closedTabs["closedTabsStack[]"]
-    end
-    
-    subgraph AgentStore
-        status["status"]
-        logs["logs[]"]
-        timeline["timeline[]"]
-        history["taskHistory[]"]
-    end
-    
-    subgraph Components["React Components"]
-        TitleBar
-        WebViewContainer
-        AgentPanel
-        SettingsModal
-    end
-    
-    TabStore --> TitleBar
-    TabStore --> WebViewContainer
-    AgentStore --> AgentPanel
-    SettingsStore --> SettingsModal
-    UIStore --> Components
-```
+- **Electron** – Desktop application framework
+- **React** – Frontend UI
+- **TypeScript** – Type-safe development
+- **Zustand** – State management
+- **Vite** – Build tool
+- **Framer Motion** – Animations
 
 ---
 
-## 🚀 Quick Start
+# 🚀 Installation
 
-### Prerequisites
+## Prerequisites
 
 - Node.js 18+
 - npm 9+
 
-### Installation
+## Clone Repository
 
 ```bash
-# Clone the repository
-git clone https://github.com/Kritavya/agentic-browser-electron.git
+git clone https://github.com/Ishaan106/agentic-browser-electron.git
 cd agentic-browser-electron
+```
 
-# Install dependencies
+## Install Dependencies
+
+```bash
 npm install
+```
 
-# Start development server
+## Start Development
+
+```bash
 npm run dev
 ```
 
-### Build for Production
+---
+
+# 📦 Production Build
 
 ```bash
-# Build the application
 npm run build
+```
 
-# Package for distribution
+Package the application:
+
+```bash
 npm run package
 ```
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+# ⌨️ Keyboard Shortcuts
 
 | Action | Shortcut |
-|--------|----------|
-| New Tab | `Ctrl+T` |
-| Close Tab | `Ctrl+W` |
-| Next Tab | `Ctrl+Tab` |
-| Previous Tab | `Ctrl+Shift+Tab` |
-| Reopen Closed Tab | `Ctrl+Shift+T` |
-| New Window | `Ctrl+N` |
-| Focus Address Bar | `Ctrl+L` |
-| Open History | `Ctrl+H` |
-| Open Downloads | `Ctrl+J` |
-| Toggle Agent Panel | `Ctrl+Shift+A` |
-| Open Settings | `Ctrl+,` |
-| Reload Page | `Ctrl+R` / `F5` |
-| Toggle Vertical Tabs | `Ctrl+Shift+V` |
+|---------|----------|
+| New Tab | Ctrl + T |
+| Close Tab | Ctrl + W |
+| Next Tab | Ctrl + Tab |
+| Previous Tab | Ctrl + Shift + Tab |
+| Reopen Closed Tab | Ctrl + Shift + T |
+| Address Bar | Ctrl + L |
+| History | Ctrl + H |
+| Downloads | Ctrl + J |
+| Toggle AI Panel | Ctrl + Shift + A |
+| Settings | Ctrl + , |
+| Reload | Ctrl + R / F5 |
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```
 agentic-browser-electron/
-├── electron/           # Electron main process
-│   ├── main.ts         # Main entry, window management
-│   └── preload.ts      # Context bridge, IPC
-├── frontend/           # React frontend
-│   ├── app/            # Root components
-│   ├── components/     # Shared UI components
-│   ├── features/       # Feature modules
-│   │   ├── agent/      # AI agent panel
-│   │   ├── tabs/       # Tab bar system
-│   │   └── history/    # History panel
-│   ├── hooks/          # Custom React hooks
-│   ├── store/          # Zustand state stores
-│   └── theme/          # Design system
-├── backend/            # Backend services
-│   ├── models/         # LLM provider configs
-│   └── tools/          # Agent tool definitions
+│
+├── electron/          # Electron main process
+├── frontend/          # React frontend
+│   ├── app/
+│   ├── components/
+│   ├── features/
+│   ├── hooks/
+│   ├── store/
+│   └── theme/
+│
+├── backend/           # Backend services
+├── assets/
+├── images/
+├── scripts/
 └── package.json
 ```
 
 ---
 
-## 🔧 Tech Stack
+# 🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| **Desktop** | Electron 29 |
-| **Framework** | React 18 + TypeScript 5 |
-| **Styling** | Tailwind CSS + CSS Variables |
-| **Animations** | Framer Motion |
-| **State** | Zustand |
-| **Icons** | Lucide React |
-| **Bundler** | Vite |
-
----
-
-## 🤖 AI Providers
-
-Supports multiple LLM providers:
-
-| Provider | Models | Free Tier |
-|----------|--------|-----------|
-| **OpenRouter** | Kimi K2, Gemma 3, Qwen3, Llama 3.3 | ✅ Yes |
-| **Google** | Gemini 2.5 Flash, Gemini 3 Flash/Pro | ✅ 20 req/day |
-| **Anthropic** | Claude 3.5 Sonnet, Claude 4 | ❌ No |
-| **OpenAI** | GPT-4o, GPT-4o-mini | ❌ No |
+| Category | Technology |
+|----------|------------|
+| Desktop | Electron |
+| Frontend | React |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| State Management | Zustand |
+| Animation | Framer Motion |
+| Bundler | Vite |
+| Icons | Lucide React |
 
 ---
 
-## 🛡️ Security
+# 🤖 Supported AI Providers
 
-- **Sandboxed Webviews**: Each tab runs in isolated sandbox
-- **Encrypted API Keys**: Stored using Electron's safeStorage
-- **Context Isolation**: Frontend has no direct Node.js access
-- **No Cloud Storage**: All data stored locally
-
----
-
-## 👨‍💻 Author
-
-**Kritavya Patel**  
-📧 kritavyapatel999@gmail.com  
-🔗 [GitHub](https://github.com/Kritavya)
+- OpenRouter
+- Google Gemini
+- Anthropic Claude
+- OpenAI GPT
 
 ---
 
-## 📄 License
+# 🔐 Security
 
-MIT License - see [LICENSE](LICENSE) for details.
+- Sandboxed WebViews
+- Electron Context Isolation
+- Secure API Key Storage
+- Local Data Storage
+
+---
+
+# 📸 Screenshots
+
+_Add screenshots of your application here._
+
+Example:
+
+```
+images/home.png
+images/agent-panel.png
+images/settings.png
+```
+
+---
+
+# 📈 Future Improvements
+
+- AI Workflow Automation
+- Multi-Agent Support
+- Extension Marketplace
+- Session Synchronization
+- Built-in PDF Assistant
+- Better Performance Optimizations
+
+---
+
+# 🙏 Acknowledgements
+
+This repository is my independently maintained version based on source code shared with me by a friend. I continue to learn from and extend the project with my own improvements.
+
+---
+
+# 👨‍💻 Author
+
+**Ishaan Shah**
+
+GitHub: https://github.com/Ishaan106
+
+---
+
+# ⭐ Support
+
+If you find this project useful, consider giving it a ⭐ on GitHub.
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
