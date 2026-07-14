@@ -1,0 +1,15 @@
+{
+    "name": "screen-capture-native",
+    "version": "1.0.0",
+    "description": "Native DXGI screen capture addon for Electron",
+    "main": "build/Release/screen_capture.node",
+    "scripts": {
+        "rebuild": "node-gyp rebuild",
+        "build": "node-gyp build",
+        "clean": "node-gyp clean"
+    },
+    "gypfile": true,
+    "dependencies": {
+        "node-addon-api": "^8.5.0"
+    }
+}

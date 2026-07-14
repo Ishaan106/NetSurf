@@ -1,0 +1,85 @@
+# Node & Dependencies
+node_modules/
+.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+dist-electron/
+out/
+build/
+.vite/
+
+# Python / Backend
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg-info/
+
+# Model weights & Large files
+*.bin
+*.gguf
+*.ggml
+
+# Logs & Telemetry
+logs/
+log_files/
+*.log
+.telemetry/
+
+# Testing
+coverage/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE & Editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.sqlite3
+
+# Secrets
+*.pem
+*.key
+secrets/
+
+# Misc
+.eslintcache
+*.tsbuildinfo
+*.asar
+
+# Docs
+eko-docs/
+adblocker-electron/
+docss/
+docs/
+report.md

@@ -1,0 +1,108 @@
+{
+  "name": "netsurf",
+  "version": "2.4.3",
+  "description": "High-performance Chrome-like browser with AI agent integration",
+  "author": {
+    "name": "Kritavya Patel",
+    "email": "kritavyapatel999@gmail.com",
+    "url": "https://github.com/Kritavya"
+  },
+  "main": "dist-electron/electron/main.js",
+  "scripts": {
+    "postinstall": "node scripts/patch-jarvis.cjs",
+    "web:dev": "vite",
+    "dev": "concurrently -k \"npm run web:dev\" \"npm run main:dev\" \"npm run electron:start\"",
+    "main:dev": "tsc -p tsconfig.electron.json -w",
+    "electron:start": "wait-on http://localhost:5173 && electron .",
+    "build": "tsc -p tsconfig.electron.json && tsc && vite build && electron-builder",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "native:rebuild": "cd native && npm run rebuild"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.2",
+    "@jarvis-agent/core": "^0.3.1",
+    "@jarvis-agent/electron": "^0.3.1",
+    "@ghostery/adblocker-electron": "^2.13.3",
+    "@google/genai": "^1.35.0",
+    "@tanstack/react-virtual": "^3.0.1",
+    "clsx": "^2.1.0",
+    "cross-fetch": "^4.1.0",
+    "electron-squirrel-startup": "^1.0.1",
+    "framer-motion": "^10.16.16",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.303.0",
+    "openai": "^6.16.0",
+    "katex": "^0.16.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.3",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@types/yauzl": "^2.10.3",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "electron": "^39.2.7",
+    "electron-builder": "^24.9.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^1.1.3",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.netsurf.browser",
+    "productName": "Netsurf",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "native/build",
+        "to": "native/build",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "native/whisper",
+        "to": "native/whisper",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "asarUnpack": [
+      "native/build/**/*",
+      "native/whisper/**/*"
+    ],
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/netsurf.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/netsurf.png"
+    }
+  }
+}

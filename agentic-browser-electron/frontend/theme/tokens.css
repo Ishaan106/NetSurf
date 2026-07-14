@@ -1,0 +1,608 @@
+/* Design Token System - CSS Variables */
+:root {
+  /* ===== Color Tokens ===== */
+
+  /* Light Theme Colors (Lumina Glass) */
+  --chrome-bg: linear-gradient(135deg, #f7f5f0 0%, #f1ebe1 100%);
+  --chrome-surface: rgba(255, 255, 255, 0.5);
+  --chrome-surface-soft: rgba(255, 255, 255, 0.3);
+  --chrome-surface-strong: rgba(255, 255, 255, 0.7);
+  --chrome-surface-solid: #ffffff;
+  --chrome-surface-hover: rgba(0, 0, 0, 0.03);
+  --chrome-surface-active: rgba(0, 0, 0, 0.06);
+  --chrome-border: rgba(0, 0, 0, 0.035);
+  --chrome-border-strong: rgba(0, 0, 0, 0.07);
+  --chrome-text: #2c2a29;
+  --chrome-text-secondary: #686461;
+  --chrome-text-muted: #938f8b;
+  --chrome-accent: #0d53c0;
+  --chrome-accent-hover: #0a46a3;
+  --chrome-accent-light: rgba(13, 83, 192, 0.07);
+  --chrome-accent-gradient: linear-gradient(135deg, #0d53c0 0%, #3b82f6 100%);
+  --ntp-bg: #f7f5f0;
+  --chrome-ambient-top: radial-gradient(120% 80% at 50% 0%, rgba(13, 83, 192, 0.08) 0%, rgba(13, 83, 192, 0) 60%);
+  --chrome-ambient-side: radial-gradient(120% 80% at 90% 10%, rgba(56, 189, 248, 0.08) 0%, rgba(56, 189, 248, 0) 65%);
+  --chrome-ambient-warm: radial-gradient(120% 80% at 10% 20%, rgba(251, 146, 60, 0.06) 0%, rgba(251, 146, 60, 0) 70%);
+
+  --sidebar-bg: rgba(240, 237, 229, 0.4);
+  --sidebar-border: rgba(0, 0, 0, 0.035);
+  --sidebar-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.03);
+  --sidebar-blur: 24px;
+  --panel-blur: 40px;
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --glass-border: rgba(0, 0, 0, 0.07);
+  --glass-highlight: rgba(255, 255, 255, 0.45);
+
+  /* Agent Panel (premium custom pastel/dark) */
+  --agent-panel-bg: rgba(255, 255, 255, 0.45);
+  --agent-panel-surface: rgba(255, 255, 255, 0.55);
+  --agent-panel-surface-strong: rgba(255, 255, 255, 0.75);
+  --agent-panel-surface-hover: rgba(0, 0, 0, 0.03);
+  --agent-panel-border: rgba(0, 0, 0, 0.08);
+  --agent-panel-text: #191c1e;
+  --agent-panel-text-secondary: #4a4a58;
+
+  /* Agent Colors */
+  --agent-primary: #4648d4;
+  --agent-secondary: #6063ee;
+  --agent-success: #28a745;
+  --agent-warning: #f2a104;
+  --agent-error: #ea4335;
+  --agent-info: #34a853;
+
+  /* Netsurf Brand Gradient */
+  --brand-gradient: linear-gradient(135deg, #4648d4 0%, #2563eb 55%, #a78bfa 100%);
+  --brand-gradient-subtle: linear-gradient(135deg, rgba(70, 72, 212, 0.05) 0%, rgba(37, 99, 235, 0.04) 100%);
+
+  /* ===== Typography ===== */
+  --font-sans-fallback: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', var(--font-sans-fallback);
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  /* Font Sizes */
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ===== Spacing (4px Grid) ===== */
+  --space-0: 0;
+  --space-0-5: 0.125rem;
+  --space-1: 0.25rem;
+  --space-1-5: 0.375rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* ===== Border Radius ===== */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  /* ===== Shadows (Premium Soft Layered) ===== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 8px 20px -4px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 16px 36px -8px rgba(0, 0, 0, 0.11), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 28px 60px -12px rgba(0, 0, 0, 0.16), 0 8px 24px -4px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 36px rgba(108, 92, 231, 0.12);
+
+  /* ===== Transitions ===== */
+  --duration-fast: 120ms;
+  --duration-normal: 240ms;
+  --duration-slow: 360ms;
+  --ease-default: cubic-bezier(0.16, 1, 0.3, 1);
+  /* ultra smooth cubic ease */
+  --ease-in: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --ease-out: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ===== Z-Index Scale ===== */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-popover: 400;
+  --z-tooltip: 500;
+  --z-toast: 600;
+
+  /* ===== Layout ===== */
+  --titlebar-height: 45px;
+  --tabbar-height: 34px;
+  --addressbar-height: 42px;
+  --sidebar-width: 200px;
+  --workspace-rail-width: 220px;
+  --panel-width: 380px;
+}
+
+/* Dark Theme (Softer Ambient Grays) */
+.dark {
+  --chrome-bg: linear-gradient(135deg, #12100e 0%, #0d0c0b 100%);
+  --chrome-surface: rgba(24, 21, 19, 0.5);
+  --chrome-surface-soft: rgba(24, 21, 19, 0.3);
+  --chrome-surface-strong: rgba(32, 29, 26, 0.7);
+  --chrome-surface-solid: #201d1a;
+  --chrome-surface-hover: rgba(255, 255, 255, 0.04);
+  --chrome-surface-active: rgba(255, 255, 255, 0.08);
+  --chrome-border: rgba(255, 255, 255, 0.02);
+  --chrome-border-strong: rgba(255, 255, 255, 0.04);
+  --chrome-text: #f5f2eb;
+  --chrome-text-secondary: #bab4aa;
+  --chrome-text-muted: #8a837a;
+  --chrome-accent: #60a5fa;
+  --chrome-accent-hover: #3b82f6;
+  --chrome-accent-light: rgba(96, 165, 250, 0.09);
+  --chrome-accent-gradient: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+  --ntp-bg: #12100e;
+  --chrome-ambient-top: radial-gradient(120% 80% at 50% 0%, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0) 60%);
+  --chrome-ambient-side: radial-gradient(120% 80% at 90% 10%, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0) 65%);
+  --chrome-ambient-warm: radial-gradient(120% 80% at 10% 20%, rgba(251, 146, 60, 0.1) 0%, rgba(251, 146, 60, 0) 70%);
+
+  /* Glassmorphism system */
+  --sidebar-bg: rgba(18, 15, 13, 0.4);
+  --sidebar-border: rgba(255, 255, 255, 0.02);
+  --sidebar-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --sidebar-blur: 24px;
+  --panel-blur: 40px;
+  --glass-bg: rgba(10, 12, 18, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.035);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+
+  /* Agent panel */
+  --agent-panel-bg: rgba(6, 7, 10, 0.3);
+  --agent-panel-surface: rgba(14, 16, 26, 0.4);
+  --agent-panel-surface-strong: rgba(22, 25, 38, 0.6);
+  --agent-panel-surface-hover: rgba(255, 255, 255, 0.04);
+  --agent-panel-border: rgba(255, 255, 255, 0.035);
+  --agent-panel-text: #edf0f7;
+  --agent-panel-text-secondary: #a3aabf;
+
+  /* Adjusted shadows for dark mode */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-lg: 0 18px 40px -8px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-xl: 0 32px 64px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-glow: 0 0 38px rgba(123, 116, 245, 0.15);
+}
+
+/* ===== Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: 1.5;
+  color: var(--chrome-text);
+  background-color: var(--chrome-bg);
+  overflow: hidden;
+}
+
+/* ===== Scrollbar Styling ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--chrome-border-strong);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--chrome-text-muted);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ===== Selection — accent tint only, no solid box ===== */
+::selection {
+  background: color-mix(in srgb, var(--chrome-accent) 18%, transparent);
+  color: inherit;
+  -webkit-text-fill-color: unset;
+}
+
+.dark ::selection {
+  background: color-mix(in srgb, var(--chrome-accent) 28%, transparent);
+  color: inherit;
+}
+
+/* ===== Focus Styles ===== */
+*:focus,
+webview:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+:focus-visible,
+webview:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.dark :focus-visible,
+.dark webview:focus-visible {
+  box-shadow: none !important;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Material Symbols Configuration ===== */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.fill {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* ==========================================================================
+   ===== Premium Theme Presets (Light & Dark Variants) =====
+   ========================================================================== */
+
+/* 1. Desert Cream (Default - Image 1 Sand style) */
+.theme-preset-desert-cream {
+  --chrome-bg: linear-gradient(135deg, #f8f6f0 0%, #f2eae0 100%);
+  --chrome-surface-solid: #ffffff;
+  --chrome-surface: rgba(255, 255, 255, 0.45);
+  --chrome-surface-soft: rgba(255, 255, 255, 0.25);
+  --chrome-surface-strong: rgba(255, 255, 255, 0.65);
+  --chrome-border: rgba(0, 0, 0, 0.035);
+  --chrome-border-strong: rgba(0, 0, 0, 0.06);
+  --chrome-text: #2c2a29;
+  --chrome-text-secondary: #6c6865;
+  --chrome-text-muted: #95908b;
+  --chrome-accent: #0f58cb;
+  --chrome-accent-hover: #0a46a3;
+  --chrome-accent-light: rgba(15, 88, 203, 0.07);
+  --chrome-accent-gradient: linear-gradient(135deg, #0f58cb 0%, #3b82f6 100%);
+  --sidebar-bg: rgba(240, 237, 229, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --agent-panel-bg: rgba(255, 255, 255, 0.45);
+  --agent-panel-surface: rgba(255, 255, 255, 0.55);
+  --agent-panel-surface-strong: rgba(255, 255, 255, 0.75);
+  --agent-panel-border: rgba(0, 0, 0, 0.08);
+}
+.dark.theme-preset-desert-cream {
+  --chrome-bg: linear-gradient(135deg, #161513 0%, #0e0d0c 100%);
+  --chrome-surface-solid: #1d1b19;
+  --chrome-surface: rgba(29, 27, 25, 0.5);
+  --chrome-surface-soft: rgba(29, 27, 25, 0.3);
+  --chrome-surface-strong: rgba(36, 34, 31, 0.7);
+  --chrome-border: rgba(255, 255, 255, 0.02);
+  --chrome-border-strong: rgba(255, 255, 255, 0.045);
+  --chrome-text: #f4eee3;
+  --chrome-text-secondary: #bab4a9;
+  --chrome-text-muted: #8d877e;
+  --chrome-accent: #dca34f;
+  --chrome-accent-hover: #c48f3b;
+  --chrome-accent-light: rgba(220, 163, 79, 0.09);
+  --chrome-accent-gradient: linear-gradient(135deg, #dca34f 0%, #eed2a7 100%);
+  --sidebar-bg: rgba(22, 21, 19, 0.4);
+  --glass-bg: rgba(18, 17, 15, 0.45);
+  --agent-panel-bg: rgba(12, 11, 10, 0.3);
+  --agent-panel-surface: rgba(24, 22, 20, 0.4);
+  --agent-panel-surface-strong: rgba(32, 30, 27, 0.6);
+  --agent-panel-border: rgba(255, 255, 255, 0.035);
+}
+
+/* 2. Sage Mist (Quiet Greenish-Gray) */
+.theme-preset-sage-mist {
+  --chrome-bg: linear-gradient(135deg, #f0f4f1 0%, #e5eae6 100%);
+  --chrome-surface-solid: #ffffff;
+  --chrome-surface: rgba(255, 255, 255, 0.45);
+  --chrome-surface-soft: rgba(255, 255, 255, 0.25);
+  --chrome-surface-strong: rgba(255, 255, 255, 0.65);
+  --chrome-border: rgba(0, 0, 0, 0.03);
+  --chrome-border-strong: rgba(0, 0, 0, 0.06);
+  --chrome-text: #2a2f2b;
+  --chrome-text-secondary: #646a65;
+  --chrome-text-muted: #8e958f;
+  --chrome-accent: #2e6b4e;
+  --chrome-accent-hover: #22523b;
+  --chrome-accent-light: rgba(46, 107, 78, 0.07);
+  --chrome-accent-gradient: linear-gradient(135deg, #2e6b4e 0%, #52b788 100%);
+  --sidebar-bg: rgba(230, 236, 232, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --agent-panel-bg: rgba(255, 255, 255, 0.45);
+  --agent-panel-surface: rgba(255, 255, 255, 0.55);
+  --agent-panel-surface-strong: rgba(255, 255, 255, 0.75);
+  --agent-panel-border: rgba(0, 0, 0, 0.08);
+}
+.dark.theme-preset-sage-mist {
+  --chrome-bg: linear-gradient(135deg, #111512 0%, #0b0e0c 100%);
+  --chrome-surface-solid: #171c18;
+  --chrome-surface: rgba(23, 28, 24, 0.5);
+  --chrome-surface-soft: rgba(23, 28, 24, 0.3);
+  --chrome-surface-strong: rgba(30, 37, 32, 0.7);
+  --chrome-border: rgba(255, 255, 255, 0.02);
+  --chrome-border-strong: rgba(255, 255, 255, 0.045);
+  --chrome-text: #e8ece9;
+  --chrome-text-secondary: #afb7b1;
+  --chrome-text-muted: #838d86;
+  --chrome-accent: #4fb282;
+  --chrome-accent-hover: #3e8d66;
+  --chrome-accent-light: rgba(79, 178, 130, 0.09);
+  --chrome-accent-gradient: linear-gradient(135deg, #4fb282 0%, #8ae1b6 100%);
+  --sidebar-bg: rgba(18, 22, 19, 0.4);
+  --glass-bg: rgba(14, 18, 15, 0.45);
+  --agent-panel-bg: rgba(10, 12, 11, 0.3);
+  --agent-panel-surface: rgba(20, 24, 21, 0.4);
+  --agent-panel-surface-strong: rgba(28, 33, 29, 0.6);
+  --agent-panel-border: rgba(255, 255, 255, 0.035);
+}
+
+/* 3. Nordic Slate (Cool Greyish-Blue) */
+.theme-preset-nordic-slate {
+  --chrome-bg: linear-gradient(135deg, #f1f4f6 0%, #e6ebef 100%);
+  --chrome-surface-solid: #ffffff;
+  --chrome-surface: rgba(255, 255, 255, 0.45);
+  --chrome-surface-soft: rgba(255, 255, 255, 0.25);
+  --chrome-surface-strong: rgba(255, 255, 255, 0.65);
+  --chrome-border: rgba(0, 0, 0, 0.03);
+  --chrome-border-strong: rgba(0, 0, 0, 0.06);
+  --chrome-text: #2a2e33;
+  --chrome-text-secondary: #646a70;
+  --chrome-text-muted: #8e959c;
+  --chrome-accent: #1e4ed8;
+  --chrome-accent-hover: #153aa6;
+  --chrome-accent-light: rgba(30, 78, 216, 0.07);
+  --chrome-accent-gradient: linear-gradient(135deg, #1e4ed8 0%, #60a5fa 100%);
+  --sidebar-bg: rgba(230, 235, 240, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --agent-panel-bg: rgba(255, 255, 255, 0.45);
+  --agent-panel-surface: rgba(255, 255, 255, 0.55);
+  --agent-panel-surface-strong: rgba(255, 255, 255, 0.75);
+  --agent-panel-border: rgba(0, 0, 0, 0.08);
+}
+.dark.theme-preset-nordic-slate {
+  --chrome-bg: linear-gradient(135deg, #111417 0%, #0a0c0e 100%);
+  --chrome-surface-solid: #171c21;
+  --chrome-surface: rgba(23, 28, 33, 0.5);
+  --chrome-surface-soft: rgba(23, 28, 33, 0.3);
+  --chrome-surface-strong: rgba(30, 37, 44, 0.7);
+  --chrome-border: rgba(255, 255, 255, 0.02);
+  --chrome-border-strong: rgba(255, 255, 255, 0.045);
+  --chrome-text: #e8eef3;
+  --chrome-text-secondary: #afb8c0;
+  --chrome-text-muted: #838e98;
+  --chrome-accent: #60a5fa;
+  --chrome-accent-hover: #3b82f6;
+  --chrome-accent-light: rgba(96, 165, 250, 0.09);
+  --chrome-accent-gradient: linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%);
+  --sidebar-bg: rgba(18, 22, 26, 0.4);
+  --glass-bg: rgba(14, 18, 22, 0.45);
+  --agent-panel-bg: rgba(10, 12, 14, 0.3);
+  --agent-panel-surface: rgba(20, 24, 28, 0.4);
+  --agent-panel-surface-strong: rgba(28, 33, 38, 0.6);
+  --agent-panel-border: rgba(255, 255, 255, 0.035);
+}
+
+/* 4. Lavender Fields (Soft Pastel Purple) */
+.theme-preset-lavender-fields {
+  --chrome-bg: linear-gradient(135deg, #f4f0f6 0%, #eae3ee 100%);
+  --chrome-surface-solid: #ffffff;
+  --chrome-surface: rgba(255, 255, 255, 0.45);
+  --chrome-surface-soft: rgba(255, 255, 255, 0.25);
+  --chrome-surface-strong: rgba(255, 255, 255, 0.65);
+  --chrome-border: rgba(0, 0, 0, 0.03);
+  --chrome-border-strong: rgba(0, 0, 0, 0.06);
+  --chrome-text: #2e2a33;
+  --chrome-text-secondary: #68646e;
+  --chrome-text-muted: #938e9c;
+  --chrome-accent: #7c3aed;
+  --chrome-accent-hover: #6d28d9;
+  --chrome-accent-light: rgba(124, 58, 237, 0.07);
+  --chrome-accent-gradient: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+  --sidebar-bg: rgba(235, 230, 240, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --agent-panel-bg: rgba(255, 255, 255, 0.45);
+  --agent-panel-surface: rgba(255, 255, 255, 0.55);
+  --agent-panel-surface-strong: rgba(255, 255, 255, 0.75);
+  --agent-panel-border: rgba(0, 0, 0, 0.08);
+}
+.dark.theme-preset-lavender-fields {
+  --chrome-bg: linear-gradient(135deg, #141117 0%, #0d0a0f 100%);
+  --chrome-surface-solid: #1c1722;
+  --chrome-surface: rgba(28, 23, 34, 0.5);
+  --chrome-surface-soft: rgba(28, 23, 34, 0.3);
+  --chrome-surface-strong: rgba(36, 30, 44, 0.7);
+  --chrome-border: rgba(255, 255, 255, 0.02);
+  --chrome-border-strong: rgba(255, 255, 255, 0.045);
+  --chrome-text: #f0e8f6;
+  --chrome-text-secondary: #b9afc0;
+  --chrome-text-muted: #8d8398;
+  --chrome-accent: #a872f8;
+  --chrome-accent-hover: #8e4df6;
+  --chrome-accent-light: rgba(168, 114, 248, 0.09);
+  --chrome-accent-gradient: linear-gradient(135deg, #a872f8 0%, #c59cfb 100%);
+  --sidebar-bg: rgba(22, 18, 26, 0.4);
+  --glass-bg: rgba(18, 14, 22, 0.45);
+  --agent-panel-bg: rgba(12, 10, 14, 0.3);
+  --agent-panel-surface: rgba(24, 20, 28, 0.4);
+  --agent-panel-surface-strong: rgba(32, 27, 38, 0.6);
+  --agent-panel-border: rgba(255, 255, 255, 0.035);
+}
+
+/* 5. Rose Quartz (Pastel Dusty Rose) */
+.theme-preset-rose-quartz {
+  --chrome-bg: linear-gradient(135deg, #f7f0f1 0%, #eee0e2 100%);
+  --chrome-surface-solid: #ffffff;
+  --chrome-surface: rgba(255, 255, 255, 0.45);
+  --chrome-surface-soft: rgba(255, 255, 255, 0.25);
+  --chrome-surface-strong: rgba(255, 255, 255, 0.65);
+  --chrome-border: rgba(0, 0, 0, 0.03);
+  --chrome-border-strong: rgba(0, 0, 0, 0.06);
+  --chrome-text: #332a2c;
+  --chrome-text-secondary: #6e6466;
+  --chrome-text-muted: #9c8e90;
+  --chrome-accent: #db2777;
+  --chrome-accent-hover: #be185d;
+  --chrome-accent-light: rgba(219, 39, 119, 0.07);
+  --chrome-accent-gradient: linear-gradient(135deg, #db2777 0%, #f472b6 100%);
+  --sidebar-bg: rgba(240, 230, 232, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --agent-panel-bg: rgba(255, 255, 255, 0.45);
+  --agent-panel-surface: rgba(255, 255, 255, 0.55);
+  --agent-panel-surface-strong: rgba(255, 255, 255, 0.75);
+  --agent-panel-border: rgba(0, 0, 0, 0.08);
+}
+.dark.theme-preset-rose-quartz {
+  --chrome-bg: linear-gradient(135deg, #171112 0%, #0f0a0b 100%);
+  --chrome-surface-solid: #221719;
+  --chrome-surface: rgba(34, 23, 25, 0.5);
+  --chrome-surface-soft: rgba(34, 23, 25, 0.3);
+  --chrome-surface-strong: rgba(44, 30, 32, 0.7);
+  --chrome-border: rgba(255, 255, 255, 0.02);
+  --chrome-border-strong: rgba(255, 255, 255, 0.045);
+  --chrome-text: #f6e8ea;
+  --chrome-text-secondary: #c0afb1;
+  --chrome-text-muted: #988385;
+  --chrome-accent: #f472b6;
+  --chrome-accent-hover: #ec4899;
+  --chrome-accent-light: rgba(244, 114, 182, 0.09);
+  --chrome-accent-gradient: linear-gradient(135deg, #f472b6 0%, #fbcfe8 100%);
+  --sidebar-bg: rgba(26, 18, 20, 0.4);
+  --glass-bg: rgba(22, 14, 16, 0.45);
+  --agent-panel-bg: rgba(14, 10, 11, 0.3);
+  --agent-panel-surface: rgba(28, 20, 22, 0.4);
+  --agent-panel-surface-strong: rgba(38, 27, 29, 0.6);
+  --agent-panel-border: rgba(255, 255, 255, 0.035);
+}
+
+/* 6. Obsidian Charcoal (High Contrast Slate) */
+.theme-preset-obsidian-charcoal {
+  --chrome-bg: linear-gradient(135deg, #f4f4f5 0%, #e4e4e7 100%);
+  --chrome-surface-solid: #ffffff;
+  --chrome-surface: rgba(255, 255, 255, 0.55);
+  --chrome-surface-soft: rgba(255, 255, 255, 0.35);
+  --chrome-surface-strong: rgba(255, 255, 255, 0.75);
+  --chrome-border: rgba(0, 0, 0, 0.04);
+  --chrome-border-strong: rgba(0, 0, 0, 0.08);
+  --chrome-text: #18181b;
+  --chrome-text-secondary: #52525b;
+  --chrome-text-muted: #8e8e93;
+  --chrome-accent: #18181b;
+  --chrome-accent-hover: #27272a;
+  --chrome-accent-light: rgba(24, 24, 27, 0.07);
+  --chrome-accent-gradient: linear-gradient(135deg, #18181b 0%, #52525b 100%);
+  --sidebar-bg: rgba(228, 228, 231, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --agent-panel-bg: rgba(255, 255, 255, 0.45);
+  --agent-panel-surface: rgba(255, 255, 255, 0.55);
+  --agent-panel-surface-strong: rgba(255, 255, 255, 0.75);
+  --agent-panel-border: rgba(0, 0, 0, 0.08);
+}
+.dark.theme-preset-obsidian-charcoal {
+  --chrome-bg: linear-gradient(135deg, #0d0d0f 0%, #050506 100%);
+  --chrome-surface-solid: #121214;
+  --chrome-surface: rgba(18, 18, 20, 0.5);
+  --chrome-surface-soft: rgba(18, 18, 20, 0.3);
+  --chrome-surface-strong: rgba(26, 26, 29, 0.7);
+  --chrome-border: rgba(255, 255, 255, 0.015);
+  --chrome-border-strong: rgba(255, 255, 255, 0.04);
+  --chrome-text: #f4f4f5;
+  --chrome-text-secondary: #a1a1aa;
+  --chrome-text-muted: #71717a;
+  --chrome-accent: #ffffff;
+  --chrome-accent-hover: #e4e4e7;
+  --chrome-accent-light: rgba(255, 255, 255, 0.12);
+  --chrome-accent-gradient: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  --sidebar-bg: rgba(13, 13, 15, 0.4);
+  --glass-bg: rgba(10, 10, 12, 0.45);
+  --agent-panel-bg: rgba(6, 6, 8, 0.3);
+  --agent-panel-surface: rgba(16, 16, 18, 0.4);
+  --agent-panel-surface-strong: rgba(24, 24, 27, 0.6);
+  --agent-panel-border: rgba(255, 255, 255, 0.035);
+}
+
+/* 7. Nebula Deep (Rich Space Indigo) */
+.theme-preset-nebula-deep {
+  --chrome-bg: linear-gradient(135deg, #edf2ff 0%, #dbe4ff 100%);
+  --chrome-surface-solid: #ffffff;
+  --chrome-surface: rgba(255, 255, 255, 0.45);
+  --chrome-surface-soft: rgba(255, 255, 255, 0.25);
+  --chrome-surface-strong: rgba(255, 255, 255, 0.65);
+  --chrome-border: rgba(0, 0, 0, 0.03);
+  --chrome-border-strong: rgba(0, 0, 0, 0.06);
+  --chrome-text: #1a202c;
+  --chrome-text-secondary: #4a5568;
+  --chrome-text-muted: #718096;
+  --chrome-accent: #3182ce;
+  --chrome-accent-hover: #2b6cb0;
+  --chrome-accent-light: rgba(49, 130, 206, 0.07);
+  --chrome-accent-gradient: linear-gradient(135deg, #3182ce 0%, #63b3ed 100%);
+  --sidebar-bg: rgba(220, 228, 239, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --agent-panel-bg: rgba(255, 255, 255, 0.45);
+  --agent-panel-surface: rgba(255, 255, 255, 0.55);
+  --agent-panel-surface-strong: rgba(255, 255, 255, 0.75);
+  --agent-panel-border: rgba(0, 0, 0, 0.08);
+}
+.dark.theme-preset-nebula-deep {
+  --chrome-bg: linear-gradient(135deg, #090a10 0%, #030406 100%);
+  --chrome-surface-solid: #11131c;
+  --chrome-surface: rgba(17, 19, 28, 0.5);
+  --chrome-surface-soft: rgba(17, 19, 28, 0.3);
+  --chrome-surface-strong: rgba(24, 27, 38, 0.7);
+  --chrome-border: rgba(255, 255, 255, 0.02);
+  --chrome-border-strong: rgba(255, 255, 255, 0.045);
+  --chrome-text: #e2e8f0;
+  --chrome-text-secondary: #94a3b8;
+  --chrome-text-muted: #64748b;
+  --chrome-accent: #c084fc;
+  --chrome-accent-hover: #a855f7;
+  --chrome-accent-light: rgba(192, 132, 252, 0.09);
+  --chrome-accent-gradient: linear-gradient(135deg, #c084fc 0%, #e9d5ff 100%);
+  --sidebar-bg: rgba(13, 14, 22, 0.4);
+  --glass-bg: rgba(10, 11, 18, 0.45);
+  --agent-panel-bg: rgba(7, 8, 12, 0.3);
+  --agent-panel-surface: rgba(17, 19, 28, 0.4);
+  --agent-panel-surface-strong: rgba(25, 28, 40, 0.6);
+  --agent-panel-border: rgba(255, 255, 255, 0.035);
+}

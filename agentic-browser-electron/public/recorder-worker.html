@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Privacy Recorder Worker</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #1a1a2e;
+            color: #0f0;
+            padding: 20px;
+            margin: 0;
+        }
+
+        #status {
+            background: #16213e;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        .value {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .recording {
+            color: #ff4444;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="status">
+        <div class="stat"><span>Status:</span><span id="recStatus" class="value">Loading...</span></div>
+        <div class="stat"><span>Dimensions:</span><span id="dims" class="value">-</span></div>
+        <div class="stat"><span>Frames:</span><span id="frames" class="value">0</span></div>
+    </div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+        const path = require('path');
+        const fs = require('fs');
+
+        let recorder = null;
+
+        function log(msg) {
+            console.log('[RecorderWorker] ' + msg);
+        }
+
+        function updateUI(status) {
+            document.getElementById('recStatus').textContent = status.recording ? 'RECORDING' : (status.initialized ? 'Ready' : 'Not Init');
+            document.getElementById('recStatus').className = status.recording ? 'value recording' : 'value';
+            document.getElementById('dims').textContent = status.width + 'x' + status.height;
+            document.getElementById('frames').textContent = status.framesRecorded || 0;
+        }
+
+        function loadAddon() {
+            // Try multiple paths to find the addon
+            const basePaths = [
+                path.join(__dirname, '../native/build/Release/privacy_recorder.node'),
+                path.join(__dirname, '../../native/build/Release/privacy_recorder.node'),
+                path.join(process.cwd(), 'native/build/Release/privacy_recorder.node'),
+            ];
+
+            for (const p of basePaths) {
+                try {
+                    if (fs.existsSync(p)) {
+                        log('Found addon at: ' + p);
+                        recorder = require(p);
+                        log('Addon loaded successfully');
+                        return true;
+                    }
+                } catch (e) {
+                    log('Error loading ' + p + ': ' + e.message);
+                }
+            }
+
+            log('ERROR: Could not find privacy_recorder.node');
+            log('Searched paths: ' + basePaths.join(', '));
+            return false;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            log('DOM ready, loading addon...');
+
+            if (!loadAddon()) {
+                ipcRenderer.send('recorder:error', { error: 'Failed to load native addon' });
+                updateUI({ initialized: false, recording: false, width: 0, height: 0, framesRecorded: 0 });
+                return;
+            }
+
+            // Initialize recorder
+            log('Initializing recorder...');
+            const result = recorder.init(0);
+            log('Init result: ' + JSON.stringify(result));
+
+            if (result.success) {
+                ipcRenderer.send('recorder:ready', {
+                    width: result.width,
+                    height: result.height,
+                    refreshRate: result.refreshRate || 60
+                });
+                updateUI({ initialized: true, recording: false, width: result.width, height: result.height, framesRecorded: 0 });
+            } else {
+                ipcRenderer.send('recorder:error', { error: result.error || 'Init failed' });
+                updateUI({ initialized: false, recording: false, width: 0, height: 0, framesRecorded: 0 });
+            }
+
+            // Status polling
+            setInterval(() => {
+                if (recorder) {
+                    const status = recorder.getStatus();
+                    updateUI(status);
+                    ipcRenderer.send('recorder:status', status);
+                }
+            }, 500);
+        });
+
+        // Handle start command
+        ipcRenderer.on('recorder:start', (_, config) => {
+            log('Start command: ' + JSON.stringify(config));
+            if (!recorder) {
+                ipcRenderer.send('recorder:error', { error: 'Addon not loaded' });
+                return;
+            }
+
+            const result = recorder.startRecording(config || {});
+            log('Start result: ' + JSON.stringify(result));
+
+            if (result.success) {
+                ipcRenderer.send('recorder:started', {});
+            } else {
+                ipcRenderer.send('recorder:error', { error: result.error });
+            }
+        });
+
+        // Handle stop command
+        ipcRenderer.on('recorder:stop', () => {
+            log('Stop command');
+            if (!recorder) return;
+
+            const result = recorder.stopRecording();
+            log('Stop result: ' + JSON.stringify(result));
+            ipcRenderer.send('recorder:stopped', { framesRecorded: result.framesRecorded || 0 });
+        });
+
+        // Cleanup
+        window.addEventListener('beforeunload', () => {
+            if (recorder) {
+                log('Shutting down...');
+                recorder.shutdown();
+            }
+        });
+
+        // Handle status query - return full diagnostics
+        ipcRenderer.on('recorder:queryStatus', () => {
+            if (recorder) {
+                const status = recorder.getStatus();
+                log('Status query: ' + JSON.stringify(status));
+                ipcRenderer.send('recorder:statusResponse', status);
+            } else {
+                ipcRenderer.send('recorder:statusResponse', { error: 'Addon not loaded' });
+            }
+        });
+
+        log('Script loaded');
+    </script>
+</body>
+
+</html>

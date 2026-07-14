@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NetSurf - Agentic Browser</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-primary-fixed": "#1c1b1b",
+                "primary-fixed": "#e5e2e1",
+                "on-tertiary-container": "#868382",
+                "on-tertiary-fixed-variant": "#484645",
+                "surface": "#faf9f7",
+                "tertiary-fixed-dim": "#cac6c4",
+                "tertiary-container": "#1c1b1a",
+                "surface-container-highest": "#e3e2e0",
+                "surface-container-low": "#f4f3f1",
+                "on-primary-fixed-variant": "#474746",
+                "surface-container-high": "#e9e8e6",
+                "primary-fixed-dim": "#c8c6c5",
+                "on-primary": "#ffffff",
+                "surface-bright": "#faf9f7",
+                "on-surface": "#1a1c1b",
+                "outline-variant": "#c4c7c7",
+                "surface-variant": "#e3e2e0",
+                "on-error-container": "#93000a",
+                "on-secondary": "#ffffff",
+                "primary": "#000000",
+                "surface-tint": "#5f5e5e",
+                "secondary-container": "#e1e0d9",
+                "on-secondary-container": "#63635e",
+                "on-primary-container": "#858383",
+                "on-error": "#ffffff",
+                "secondary-fixed-dim": "#c8c6c0",
+                "on-background": "#1a1c1b",
+                "inverse-primary": "#c8c6c5",
+                "outline": "#747878",
+                "on-surface-variant": "#444748",
+                "secondary-fixed": "#e4e2dc",
+                "tertiary-fixed": "#e6e2df",
+                "surface-dim": "#dadad8",
+                "error": "#ba1a1a",
+                "tertiary": "#000000",
+                "secondary": "#5f5f5a",
+                "surface-container-lowest": "#ffffff",
+                "inverse-on-surface": "#f1f1ef",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#2f3130",
+                "on-tertiary-fixed": "#1c1b1a",
+                "primary-container": "#1c1b1b",
+                "on-secondary-fixed": "#1b1c18",
+                "surface-container": "#efeeec",
+                "on-secondary-fixed-variant": "#474742",
+                "on-tertiary": "#ffffff",
+                "background": "#faf9f7"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "20px",
+                "margin-mobile": "16px",
+                "xl": "48px",
+                "sm": "8px",
+                "md": "16px",
+                "unit": "4px",
+                "margin-desktop": "32px",
+                "xs": "4px",
+                "lg": "24px",
+                "agent_panel_width": "320px",
+                "sidebar_width": "260px",
+                "stack-gap": "12px"
+        },
+        "fontFamily": {
+                "label-md": [
+                        "Inter"
+                ],
+                "display": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "title-lg": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display": [
+                        "40px",
+                        {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "title-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "26px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "30px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "11px",
+                        {
+                                "lineHeight": "14px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body class="bg-background h-screen flex overflow-hidden font-body-md text-on-surface antialiased selection:bg-primary/20 selection:text-primary">
+<!-- Left Sidebar: SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-sidebar_width bg-surface/80 backdrop-blur-md border-r border-on-surface/5 flex flex-col px-4 py-6 gap-stack-gap z-50 transition-all duration-300">
+<!-- Header -->
+<div class="flex items-center gap-3 px-2 mb-4">
+<div class="w-8 h-8 rounded-lg overflow-hidden shrink-0 bg-primary/5 flex items-center justify-center">
+<img alt="NetSurf Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUSbMdrDHQ3bnZDOfawS7RrAktlUx643vWKox7V1gfuFSYuJwEsI6pbR9U6RSWH9P5EKGyzXb5KuLwQZ9iXOO5H6I8HFPM000F5ifX2u3yvY83LOChz1YGNqsOaOTzKtf3EnnETTfjEgx-Ou_49_PJbOmMkZA-NaN_YeKc1kgf4SfZz-wEkbeiKhJNtcD-NxkSQzkh-8JQMGEVJz9PtlDGWwECiK_IyQl2jvGOVwCRN1VtEIlQcy-QF25gwuoNOsA4Mo4mkZoyhpA"/>
+</div>
+<div>
+<h1 class="font-title-lg text-title-lg font-semibold text-on-surface leading-tight tracking-tight">NetSurf</h1>
+</div>
+</div>
+<div class="flex-grow overflow-y-auto pr-2 space-y-6">
+<!-- Workspaces CTA Area -->
+<div>
+<div class="flex items-center justify-between px-2 mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest font-semibold">Workspaces</span>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+<div class="space-y-0.5">
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-[18px]">home</span>
+<span class="font-body-md text-body-md">Personal</span>
+</a>
+<!-- Active Workspace Category -->
+<div class="bg-surface-container/50 rounded-lg border border-on-surface/5 mt-1 pb-1 transition-all">
+<div class="flex items-center justify-between px-2 py-2 text-on-surface font-medium cursor-pointer hover:bg-surface-container/80 rounded-t-lg transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px] text-primary">work</span>
+<span class="font-body-md text-body-md">Work</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_less</span>
+</div>
+<div class="space-y-0.5 ml-7 pr-2">
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">folder</span>
+<span class="font-body-md text-body-md truncate">Project Alpha</span>
+</a>
+<a class="flex items-center justify-between px-2 py-1.5 rounded-lg text-on-surface bg-surface-variant/50 font-medium transition-all shadow-sm" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[16px] fill text-primary">folder</span>
+<span class="font-body-md text-body-md truncate">Design System</span>
+</div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">folder</span>
+<span class="font-body-md text-body-md truncate">Marketing</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">folder</span>
+<span class="font-body-md text-body-md truncate">Resources</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Generic Nav -->
+<div class="space-y-0.5">
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">search</span>
+<span class="font-body-md text-body-md truncate">Research</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+<span class="font-body-md text-body-md truncate">Inspiration</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">archive</span>
+<span class="font-body-md text-body-md truncate">Archive</span>
+</a>
+</div>
+<!-- Pinned Apps -->
+<div>
+<div class="flex items-center justify-between px-2 mb-2 mt-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest font-semibold">Pinned</span>
+</div>
+<div class="space-y-0.5">
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px] text-[#A259FF]">edit_square</span>
+<span class="font-body-md text-body-md truncate">Figma</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px] text-[#5E6AD2]">check_circle</span>
+<span class="font-body-md text-body-md truncate">Linear</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px] text-error">mail</span>
+<span class="font-body-md text-body-md truncate">Gmail</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="font-body-md text-body-md truncate">New Tab</span>
+</a></div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="pt-4 border-t border-on-surface/5 space-y-1">
+<a class="flex items-center justify-between px-2 py-2 rounded-lg text-on-surface hover:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px] text-primary">smart_toy</span>
+<span class="font-body-md text-body-md font-medium">Agent</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">Ready</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span class="font-body-md text-body-md truncate">Shadow Workspace</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="font-body-md text-body-md truncate">Settings</span>
+</a>
+<button class="w-full flex items-center gap-3 px-2 py-2 mt-2 rounded-lg hover:bg-surface-container transition-colors text-left group">
+<img alt="Kritavya Profile" class="w-8 h-8 rounded-full border border-on-surface/10 group-hover:border-primary/30 transition-colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO1hTIAP5xNX8kEz4wK7CE97wWxxaEs3LxmqRofBm0MBTvrmHKW4Tg0nbIbaNbxPn4P_uMIHOlTGu9OcE7QKstsapWmXkibyC-OxHsVvBMTC9fjuSFWrauXmpd-2xUtt9QJA6eBdqmUJMl_xSTr9KY_Wi6EaC8pjleLIXxvhSrwOScckHC25trp_Vzb3Zvnr52e--7FG_yS3h8wqI_RHbGv3lhY3AZqU6gL3ShQfTKOboxxnd2JuaUxAP8GqTDKcghB10QrOjeeyY"/>
+<div class="flex-grow overflow-hidden">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-on-surface truncate">Kritavya</span>
+<span class="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded uppercase font-bold tracking-wider">Pro</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">New Tab</p>
+</div>
+</button>
+</div>
+</nav>
+<!-- Main Canvas Area -->
+<main class="ml-[260px] mr-[320px] flex-grow h-full flex flex-col relative z-0 bg-background">
+<!-- Top App Bar (Browser Chrome Area) -->
+<header class="flex items-center justify-between h-16 px-4 max-w-full bg-surface/60 backdrop-blur-md border-b border-on-surface/5 sticky top-0 z-40 transition-colors">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<button class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">keyboard_double_arrow_left</span></button>
+<button class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button>
+<button class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">arrow_forward</span></button>
+<button class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">refresh</span></button>
+</div>
+<div class="flex-grow max-w-2xl mx-4 relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-1.5 border border-on-surface/10 bg-surface-container-lowest/50 hover:bg-surface-container-lowest focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 focus:border-primary/30 rounded-lg font-body-md text-body-md placeholder-on-surface-variant/60 shadow-sm transition-all" placeholder="Search or enter website..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<span class="material-symbols-outlined text-[18px] text-primary/70 cursor-pointer hover:text-primary transition-colors">auto_fix_high</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-md hover:bg-surface-container transition-colors text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[20px]">lightbulb</span></button>
+<button class="p-1.5 rounded-md hover:bg-primary/10 transition-colors text-primary bg-primary/5 border border-primary/10"><span class="material-symbols-outlined text-[20px]">auto_fix_high</span></button>
+<button class="p-1.5 rounded-md hover:bg-surface-container transition-colors text-on-surface-variant hover:text-on-surface ml-1">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+<div class="w-px h-5 bg-on-surface/10 mx-2"></div>
+<button class="p-1.5 rounded-md hover:bg-surface-container transition-colors text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[20px]">add</span></button>
+</div>
+</header>
+<!-- Canvas Content -->
+<div class="flex-grow overflow-y-auto px-10 pb-24 flex flex-col items-center pt-[15vh]">
+<div class="w-full max-w-4xl flex flex-col items-center mx-auto">
+<!-- Greeting -->
+<div class="text-center mb-8">
+<div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary flex items-center justify-center text-on-primary shadow-lg shadow-primary/10">
+<img alt="NetSurf Logo" class="w-10 h-10 object-contain invert brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD6eb9c5wz6EeugaPV8PuazG8ng6ycILNuYXeCPEHSp9Bl2uiJAifY2QWGXL52zepG42TRqiY9DGE84Ubw4qBs-U22-7cC1N-x8kvqkfh4BtQhONjbezO9Jp1Mij9jA2ZMoZ9Tr4P5UdOVVbBAUsQlZdFcaHx_AoKrconseqrlD2gY-OEKvinYrLUR4FBX138hN_znHaprFSowKvMqfqwjtWyyHOBFgWgTipW7CPpRMfpx7rkAqNHCCHqZPygkCbwdrZ29FPFJgic"/>
+</div>
+<h2 class="font-display text-display text-on-surface tracking-tight">Good evening, Kritavya</h2>
+</div>
+<!-- Command Bar -->
+<div class="w-full bg-surface-container-lowest rounded-2xl p-2 shadow-sm border border-on-surface/5 mb-6 mx-auto transition-shadow hover:shadow-md focus-within:shadow-md focus-within:border-primary/30">
+<div class="flex items-center px-4 py-3 bg-transparent rounded-xl">
+<span class="material-symbols-outlined text-on-surface-variant mr-3 text-[22px]">search</span>
+<input class="flex-grow bg-transparent border-none focus:ring-0 font-title-lg text-title-lg placeholder-on-surface-variant/50 text-on-surface" placeholder="Ask anything or type a command..." type="text"/>
+<button class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors ml-2"><span class="material-symbols-outlined">mic</span></button>
+<button class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined">upload</span></button>
+</div>
+</div>
+<!-- Quick Actions Chips -->
+<div class="flex flex-wrap justify-center gap-3 mb-16 mx-auto">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container transition-all border border-on-surface/5 text-on-surface shadow-sm hover:shadow">
+<span class="material-symbols-outlined text-[18px] text-primary">language</span>
+<span class="font-label-md text-label-md">Search the web</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container transition-all border border-on-surface/5 text-on-surface shadow-sm hover:shadow">
+<span class="material-symbols-outlined text-[18px] text-primary">description</span>
+<span class="font-label-md text-label-md">Summarize page</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container transition-all border border-on-surface/5 text-on-surface shadow-sm hover:shadow">
+<span class="material-symbols-outlined text-[18px] text-primary">auto_awesome</span>
+<span class="font-label-md text-label-md">Extract key points</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest hover:bg-surface-container transition-all border border-on-surface/5 text-on-surface shadow-sm hover:shadow">
+<span class="material-symbols-outlined text-[18px] text-primary">note_add</span>
+<span class="font-label-md text-label-md">Create note</span>
+</button>
+</div>
+<!-- Grid Sections -->
+<div class="w-full space-y-12">
+<!-- Suggestions -->
+<section>
+<h3 class="font-title-lg text-title-lg font-semibold mb-4 text-on-surface tracking-tight">Suggestions for you</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-4 flex flex-col hover:shadow-md hover:border-primary/20 transition-all cursor-pointer group shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-primary/5 text-primary flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-1">Summarize this page</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Get key takeaways</p>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-4 flex flex-col hover:shadow-md hover:border-primary/20 transition-all cursor-pointer group shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-primary/5 text-primary flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">balance</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-1">Compare products</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Find the best option</p>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-4 flex flex-col hover:shadow-md hover:border-primary/20 transition-all cursor-pointer group shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-primary/5 text-primary flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">search_insights</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-1">Research a topic</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Deep dive insights</p>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-4 flex flex-col hover:shadow-md hover:border-primary/20 transition-all cursor-pointer group shadow-sm">
+<div class="w-10 h-10 rounded-lg bg-primary/5 text-primary flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">edit_document</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-1">Draft an email</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Professional and clear</p>
+</div>
+</div>
+</section>
+<!-- Recent Tabs -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-title-lg text-title-lg font-semibold text-on-surface tracking-tight">Recent Tabs</h3>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors font-medium">Suggested Tabs</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Tab Card 1 -->
+<div class="group cursor-pointer">
+<div class="h-32 rounded-xl bg-surface-container border border-on-surface/5 mb-2 p-2 flex flex-col justify-between relative overflow-hidden transition-all group-hover:shadow-md group-hover:border-primary/20">
+<div class="flex gap-1 opacity-50">
+<div class="w-1 h-1 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface"></div>
+</div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-md border border-on-surface/5 rounded-lg p-2 flex items-center gap-2 shadow-sm">
+<div class="w-6 h-6 rounded bg-[#A259FF]/10 flex items-center justify-center text-[#A259FF]"><span class="material-symbols-outlined text-[14px]">edit_square</span></div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Figma - Design System</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">figma.com</p>
+</div>
+</div>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Figma - Design System</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">figma.com</p>
+</div>
+<!-- Tab Card 2 -->
+<div class="group cursor-pointer">
+<div class="h-32 rounded-xl bg-surface-container border border-on-surface/5 mb-2 p-2 flex flex-col justify-between relative overflow-hidden transition-all group-hover:shadow-md group-hover:border-primary/20">
+<div class="flex gap-1 opacity-50">
+<div class="w-1 h-1 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface"></div>
+</div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-md border border-on-surface/5 rounded-lg p-2 flex items-center gap-2 shadow-sm">
+<div class="w-6 h-6 rounded bg-[#5E6AD2]/10 flex items-center justify-center text-[#5E6AD2]"><span class="material-symbols-outlined text-[14px]">check_circle</span></div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Linear - Issue #3921</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">linear.app</p>
+</div>
+</div>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">Linear - Issue #3921</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">linear.app</p>
+</div>
+<!-- Tab Card 3 -->
+<div class="group cursor-pointer">
+<div class="h-32 rounded-xl bg-surface-container border border-on-surface/5 mb-2 p-2 flex flex-col justify-between relative overflow-hidden transition-all group-hover:shadow-md group-hover:border-primary/20">
+<div class="flex gap-1 opacity-50">
+<div class="w-1 h-1 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface"></div>
+</div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-md border border-on-surface/5 rounded-lg p-2 flex items-center gap-2 shadow-sm">
+<div class="w-6 h-6 rounded bg-red-500/10 flex items-center justify-center text-red-500"><span class="material-symbols-outlined text-[14px]">play_arrow</span></div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">YouTube</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">youtube.com</p>
+</div>
+</div>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">YouTube</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">youtube.com</p>
+</div>
+<!-- Tab Card 4 -->
+<div class="group cursor-pointer">
+<div class="h-32 rounded-xl bg-surface-container border border-on-surface/5 mb-2 p-2 flex flex-col justify-between relative overflow-hidden transition-all group-hover:shadow-md group-hover:border-primary/20">
+<div class="flex gap-1 opacity-50">
+<div class="w-1 h-1 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface"></div><div class="w-1 h-1 rounded-full bg-on-surface"></div>
+</div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-md border border-on-surface/5 rounded-lg p-2 flex items-center gap-2 shadow-sm">
+<div class="w-6 h-6 rounded bg-[#6c40d6]/10 flex items-center justify-center text-[#6c40d6]"><span class="material-symbols-outlined text-[14px]">public</span></div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">The Verge</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">theverge.com</p>
+</div>
+</div>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors">The Verge</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">theverge.com</p>
+</div>
+</div>
+</section>
+<!-- Recent Files -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-title-lg text-title-lg font-semibold text-on-surface tracking-tight">Recent Files</h3>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors font-medium">View all</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-4 flex items-center gap-3 hover:shadow-md hover:border-primary/20 transition-all cursor-pointer shadow-sm group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 group-hover:bg-primary/5 transition-colors text-on-surface-variant group-hover:text-primary">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="overflow-hidden">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Project Brief.pdf</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Work / Resources</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-4 flex items-center gap-3 hover:shadow-md hover:border-primary/20 transition-all cursor-pointer shadow-sm group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 group-hover:bg-primary/5 transition-colors text-on-surface-variant group-hover:text-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="overflow-hidden">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Q2 Planning.docx</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Work / Project Alpha</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-4 flex items-center gap-3 hover:shadow-md hover:border-primary/20 transition-all cursor-pointer shadow-sm group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 group-hover:bg-primary/5 transition-colors text-on-surface-variant group-hover:text-primary">
+<span class="material-symbols-outlined">draw</span>
+</div>
+<div class="overflow-hidden">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Design System.fig</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Work / Design System</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-4 flex items-center gap-3 hover:shadow-md hover:border-primary/20 transition-all cursor-pointer shadow-sm group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 group-hover:bg-primary/5 transition-colors text-on-surface-variant group-hover:text-primary">
+<span class="material-symbols-outlined">article</span>
+</div>
+<div class="overflow-hidden">
+<h4 class="font-label-md text-label-md text-on-surface truncate">Notes.txt</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Personal</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Sidebar: Agent Panel -->
+<aside class="fixed right-0 top-0 h-full w-agent_panel_width bg-surface/80 backdrop-blur-md border-l border-on-surface/5 flex flex-col z-50 shadow-[-4px_0_24px_rgba(0,0,0,0.02)] transition-all duration-300"><div class="flex justify-end gap-1 px-4 py-2 border-b border-on-surface/5 bg-transparent">
+<button class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">check_box_outline_blank</span>
+</button>
+<button class="p-1.5 rounded-md hover:bg-error/10 hover:text-error text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Header -->
+<header class="h-16 px-4 border-b border-on-surface/5 flex items-center justify-between shrink-0"><div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_awesome</span>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface leading-tight font-semibold">NetSurf AI</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Local LLM</p>
+</div>
+</div>
+<div class="flex items-center">
+<button class="flex items-center gap-1 px-2 py-1 rounded-md hover:bg-surface-container text-on-surface text-label-sm font-label-sm border border-on-surface/10 transition-colors bg-surface-container-lowest">
+    auto <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</div></header>
+<!-- Panel Content -->
+<div class="flex-grow overflow-y-auto p-4 space-y-6">
+<!-- Browsing Context -->
+<section>
+<div class="flex items-center gap-2 mb-3 text-primary">
+<span class="material-symbols-outlined text-[16px]">explore</span>
+<h3 class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">Browsing Context</h3>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-xl border border-on-surface/5 mb-3 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">public</span>
+</div>
+<div class="overflow-hidden">
+<h4 class="font-label-md text-label-md text-on-surface truncate font-medium">New Tab</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">New Tab</p>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container-lowest rounded-md font-label-sm text-label-sm text-on-surface-variant border border-on-surface/5 shadow-sm">Work: 1 tabs</span>
+<span class="px-2 py-1 bg-surface-container-lowest rounded-md font-label-sm text-label-sm text-on-surface-variant border border-on-surface/5 shadow-sm">Page vision on</span>
+</div>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg border border-on-surface/10 bg-surface-container-lowest font-label-md text-label-md hover:bg-surface-container hover:border-primary/20 transition-all shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px]">chat_bubble</span> Chat
+                    </button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 rounded-lg border border-on-surface/10 bg-surface-container-lowest font-label-md text-label-md hover:bg-surface-container hover:border-primary/20 transition-all shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px]">account_tree</span> Plan
+                    </button>
+</div>
+</section>
+<!-- Proactive Suggestion -->
+<section class="bg-primary/5 border border-primary/10 p-4 rounded-xl relative overflow-hidden shadow-sm">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-4 -mt-4 pointer-events-none"></div>
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<h3 class="font-label-md text-label-md font-semibold">Proactive Suggestion</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 leading-relaxed text-sm">Would you like me to synthesize the core topics and action items from this document?</p>
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary/90 transition-colors shadow-sm shadow-primary/10 font-medium">
+                    Yes, summarize
+                </button>
+</section>
+<!-- Quick Tasks -->
+<section>
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold mb-3 px-1">Quick Tasks</h3>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-3 hover:shadow-sm hover:border-primary/20 cursor-pointer transition-all flex justify-between items-start group">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors font-medium">Search and summarize</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Search the web for a topic and summarize the most useful result.</p>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant mt-0.5 group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-3 hover:shadow-sm hover:border-primary/20 cursor-pointer transition-all flex justify-between items-start group">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors font-medium">Compare options</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Compare the strongest options for this question:</p>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant mt-0.5 group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-3 hover:shadow-sm hover:border-primary/20 cursor-pointer transition-all flex justify-between items-start group">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors font-medium">Plan research</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Build a browsing plan to research:</p>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant mt-0.5 group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<div class="bg-surface-container-lowest border border-on-surface/5 rounded-xl p-3 hover:shadow-sm hover:border-primary/20 cursor-pointer transition-all flex justify-between items-start group">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors font-medium">Explain shortcuts</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Explain the browser shortcuts that help me move faster.</p>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant mt-0.5 group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Chat Input Footer -->
+<div class="p-4 border-t border-on-surface/5 bg-transparent shrink-0">
+<div class="relative flex items-center bg-surface-container-lowest rounded-full border border-on-surface/10 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/30 transition-all px-3 py-2 shadow-sm">
+<input class="flex-grow bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder-on-surface-variant/60" placeholder="Describe a browser task..." type="text"/>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">mic</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">send</span></button>
+</div>
+</div>
+</aside>
+</body></html>
