@@ -3,10 +3,9 @@
   "version": "2.4.3",
   "description": "High-performance Chrome-like browser with AI agent integration",
   "author": {
-    "name": "Kritavya Patel",
-    "email": "kritavyapatel999@gmail.com",
-    "url": "https://github.com/Kritavya"
-  },
+  "name": "Ishaan Shah",
+  "url": "https://github.com/Ishaan106"
+}
   "main": "dist-electron/electron/main.js",
   "scripts": {
     "postinstall": "node scripts/patch-jarvis.cjs",
